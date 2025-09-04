@@ -1,0 +1,123 @@
+/* Container that holds both left and right panels */
+.mainContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #f0f4ff, #ffffff);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 1rem;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* LEFT: Form container */
+.leftContainer {
+  background: white;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  border: 1px solid #e0e0e0;
+  max-width: 480px;
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* RIGHT: Info / toggle panel */
+.rightContainer {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 300px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Input container (wraps form fields) */
+.inputContainer {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+/* Two fields in a row for signup (username and name) */
+.row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.inputField {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.2s ease-in-out;
+  width: 100%;
+}
+
+.inputField:focus {
+  border-color: #667eea;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+/* Primary button */
+.button {
+  background: #667eea;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.3s ease;
+  margin-top: 1rem;
+  max-width: 200px;
+}
+
+.button:hover {
+  background: #556cd6;
+}
+
+/* Responsive Text Style (use with class, avoid global p selector) */
+.paragraph {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+/* Responsive layout: stack on mobile */
+@media screen and (max-width: 768px) {
+  .mainContainer {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .leftContainer,
+  .rightContainer {
+    max-width: 100%;
+    border-radius: 12px;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  .inputField {
+    width: 100%;
+  }
+
+  .rightContainer {
+    margin-left: 0;
+    margin-top: 1.5rem;
+  }
+}
