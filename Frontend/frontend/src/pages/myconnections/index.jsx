@@ -47,7 +47,7 @@ export default function Connections() {
                     }
                   >
                     <img
-                      src={`${BASE_URL}/${user.userId.profilePicture}`}
+                      src={user.userId.profilePicture}
                       alt="Profile"
                       className={styles.avatar}
                     />
@@ -94,7 +94,7 @@ export default function Connections() {
                     }
                   >
                     <img
-                      src={`${BASE_URL}/${user.userId.profilePicture}`}
+                      src={user.userId.profilePicture}
                       alt="Profile"
                       className={styles.avatar}
                     />

@@ -93,7 +93,7 @@ export const uploadProfilePicture = async (req, res) => {
       return res.status(400).json({ message: "No file uploaded" });
     }
 
-    user.profilePicture = req.file.filename;
+    user.profilePicture = req.file.path;
     await user.save();
 
     return res.status(200).json({

@@ -56,7 +56,7 @@ export default function DashboardLayout({ children }) {
           authState.allUsers.map((profile, index) => (
             <div key={index} className={styles.profileCard}>
               <img
-                src={`${BASE_URL}/${profile.userId.profilePicture}`}
+                src={profile.userId.profilePicture}
                 alt="profile"
                 className={styles.profileImg}
               />

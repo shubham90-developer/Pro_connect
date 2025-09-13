@@ -36,13 +36,6 @@ export default function Dashboard() {
     dispatch(getAllPosts());
   };
 
-  // useEffect(() => {
-  //   if (authState.isTokenThere) {
-  //     dispatch(getAllPosts());
-  //     dispatch(getUserAndProfile({ token: localStorage.getItem("token") }));
-  //   }
-  // }, [authState.isTokenThere]);
-
   useEffect(() => {
   const token = localStorage.getItem("token"); // or sessionStorage
   if (token) {
@@ -75,7 +68,7 @@ export default function Dashboard() {
           <div className={styles.profilePictureWrapper}>
             <img
               className={styles.profilePicture}
-              src={`${BASE_URL}/${authState.user.userId.profilePicture}`}
+              src={authState.user.userId.profilePicture}
               alt="Profile"
             />
           </div>
@@ -116,7 +109,7 @@ export default function Dashboard() {
               <div className={styles.postHeader}>
                 <img
                   className={styles.postProfilePic}
-                  src={`${BASE_URL}/${post.userId.profilePicture}`}
+                  src={post.userId.profilePicture}
                   alt="Post"
                 />
                 <div className={styles.userInfo}>
@@ -142,7 +135,7 @@ export default function Dashboard() {
                 <div className={styles.postMediaWrapper}>
                   <img
                     className={styles.postMedia}
-                    src={`${BASE_URL}/${post.media}`}
+                    src={post.media}
                     alt="Post media"
                   />
                 </div>
@@ -199,7 +192,7 @@ export default function Dashboard() {
                     <div key={index} className={styles.commentItem}>
                       <img
                         className={styles.commentProfilePic}
-                        src={`${BASE_URL}/${postComment.userId.profilePicture}`}
+                        src={postComment.userId.profilePicture}
                         alt="User"
                       />
                       <div>

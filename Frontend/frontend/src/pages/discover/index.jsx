@@ -38,7 +38,7 @@ export default function Discover() {
                 >
                   <img
                     className={styles.userAvatar}
-                    src={`${BASE_URL}/${profile.userId.profilePicture}`}
+                    src={profile.userId.profilePicture}
                     alt="profile"
                   />
                   <div className={styles.userInfo}>

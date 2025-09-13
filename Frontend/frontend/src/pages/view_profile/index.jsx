@@ -90,7 +90,7 @@ export default function ViewProfile() {
                 </label>
                 <img
                   className={styles.profilePic}
-                  src={`${BASE_URL}/${userProfile.userId.profilePicture}`}
+                  src={userProfile.userId.profilePicture}
                   alt="Profile Picture"
                 />
                 <input
@@ -149,7 +149,7 @@ export default function ViewProfile() {
                   <div key={index} className={styles.post}>
                     {post.media ? (
                       <div className={styles.postMedia}>
-                        <img src={`${BASE_URL}/${post.media}`} alt="Post media" />
+                        <img src={post.media} alt="Post media" />
                       </div>
                     ) : (
                       <div className={styles.emptyMedia}></div>

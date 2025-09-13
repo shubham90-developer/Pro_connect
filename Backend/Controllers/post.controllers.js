@@ -7,6 +7,7 @@ export const activeCheck = (req, res) => {
 };
 
 export const createPost = async (req, res) => {
+  console.log("create post conyroller called");
   try {
     const { token, body } = req.body;
 
