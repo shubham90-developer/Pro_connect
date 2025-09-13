@@ -1,132 +1,317 @@
-/* Premium Banner Style */
-.card {
-  width: 100%;
-  height: 15rem;
-  background-image: url("https://png.pngtree.com/background/20230617/original/pngtree-background-featuring-3d-rendered-logos-of-popular-social-media-platforms-picture-image_3696371.jpg");
-  background-size: cover;
-  background-position: center;
+/* Main Container */
+.profileContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-  position: relative;
-  margin-bottom: 4.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-/* Profile Info Container */
+/* Banner */
+
+
+/* Profile Header */
 .profileHeader {
   display: flex;
-  align-items: flex-end;
-  padding: 0 2rem;
-  position: relative;
-  margin-top: -5rem;
-  z-index: 10;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid #e5e7eb;
 }
 
-/* Profile Picture */
 .profilePic {
-  width: 8rem;
-  height: 8rem;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border: 4px solid #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin-top: -60px;
 }
 
-/* Name + Username */
 .userDetails {
-  margin-left: 1.5rem;
+  flex: 1;
+  margin-top: -40px;
 }
 
 .name {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 700;
-  color: #1a1a1a;
-  margin: 0;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+  line-height: 1.2;
 }
 
 .username {
   font-size: 1.1rem;
+  color: #6b7280;
+  margin: 0;
   font-weight: 500;
-  color: #555;
-  margin-top: 0.2rem;
 }
 
-/* Connection Button Section */
+/* Connection Section */
 .connectionSection {
-  padding: 1rem 2rem;
-}
-
-.connectButton,
-.connectedButton {
-  padding: 0.7rem 1.5rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 30px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
 }
 
 .connectButton {
-  background: linear-gradient(90deg, #0070f3, #0051a3);
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
   color: white;
-  box-shadow: 0 4px 10px rgba(0, 112, 243, 0.3);
+  border: none;
+  padding: 12px 32px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
 .connectButton:hover {
-  background: linear-gradient(90deg, #0051a3, #003d7a);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
 }
 
 .connectedButton {
-  background: #28a745;
+  background: #10b981;
   color: white;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: default;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.connectedButton:first-child {
+  background: #f59e0b;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
 }
 
 /* Bio Section */
 .bio {
-  padding: 0.5rem 2rem 1.5rem;
-  font-size: 1.05rem;
-  color: #333;
-  border-bottom: 1px solid #eee;
+  background: #f9fafb;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #374151;
+  border-left: 4px solid #3b82f6;
 }
 
-/* Posts Section */
-.recentActivity {
-  padding: 2rem;
-}
-
-.recentActivity h2 {
-  font-size: 1.6rem;
+/* Section Titles */
+.sectionTitle {
+  font-size: 1.5rem;
   font-weight: 700;
-  color: #1a1a1a;
-  margin-bottom: 1rem;
+  color: #1f2937;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+/* Recent Activity */
+.recentActivity {
+  margin-bottom: 40px;
+}
+
+.postsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .post {
-  background: #fff;
-  border: 1px solid #eee;
-  border-radius: 12px;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: #3b82f6;
+}
+
+.postMedia {
+  margin-bottom: 15px;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .postMedia img {
   width: 100%;
-  max-width: 600px;
-  height: auto;
-  border-radius: 10px;
+  height: 300px;
   object-fit: cover;
-  margin-bottom: 0.8rem;
+  display: block;
 }
 
 .emptyMedia {
-  height: 50px;
-  width: 50px;
+  height: 0;
+  margin: 0;
 }
 
 .postBody {
   font-size: 1rem;
-  color: #444;
-  line-height: 1.5;
+  line-height: 1.6;
+  color: #374151;
+  margin: 0;
+}
+
+/* Work History */
+.workHistory {
+  margin-bottom: 30px;
+}
+
+.workHistoryContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.workItem {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.workItem:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.workPosition {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+}
+
+.workYears {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Download Resume */
+.downloadResume {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+}
+
+.downloadResume:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(5, 150, 105, 0.4);
+  background: linear-gradient(135deg, #047857 0%, #065f46 100%);
+}
+
+.downloadResume i {
+  font-size: 1rem;
+}
+
+.downloadText {
+  font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profileContainer {
+    margin: 10px;
+    padding: 15px;
+  }
+  
+  .profileHeader {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .profilePic {
+    width: 100px;
+    height: 100px;
+    margin-top: -50px;
+  }
+  
+  .userDetails {
+    margin-top: 0;
+  }
+  
+  .name {
+    font-size: 1.5rem;
+  }
+  
+  .username {
+    font-size: 1rem;
+  }
+  
+  .banner {
+    height: 150px;
+  }
+  
+  .postMedia img {
+    height: 200px;
+  }
+  
+  .connectButton,
+  .connectedButton {
+    padding: 10px 24px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .profileContainer {
+    margin: 5px;
+    padding: 10px;
+  }
+  
+  .banner {
+    height: 120px;
+    margin: -10px -10px 15px -10px;
+  }
+  
+  .profilePic {
+    width: 80px;
+    height: 80px;
+    margin-top: -40px;
+  }
+  
+  .name {
+    font-size: 1.3rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.3rem;
+  }
+  
+  .post,
+  .workItem {
+    padding: 15px;
+  }
+  
+  .postMedia img {
+    height: 150px;
+  }
 }

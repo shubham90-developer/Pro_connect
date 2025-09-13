@@ -75,7 +75,45 @@ export default function Layout({ children }) {
       <main className={styles.main}>{children}</main>
 
       
-      <footer className={styles.footer}>© 2025 My App</footer>
+<footer className={styles.footer}>
+  <p>
+    🚀 Built with ❤️ using MERN Stack | Passionate about solving real-world problems with scalable web apps.
+  </p>
+  <div className={styles.contact}>
+    👨‍💻 Developed by Shubham Yadav |{" "}
+    <a href="tel:+918329216823" className={styles.contactLink}>
+      📞 +91 8329216823 Call Me
+    </a>{" "}
+    |{" "}
+    <a
+      href="https://mail.google.com/mail/?view=cm&fs=1&to=shubham8329yadav@gmail.com&su=Hello&body=I%20saw%20your%20project!"
+      target="_blank"
+      rel="noopener noreferrer"
+      className={styles.contactLink}
+    >
+      ✉️ Email Me
+    </a>{" "}
+    |{" "}
+    <a
+      href="https://github.com/shubham90-developer"
+      target="_blank"
+      rel="noopener noreferrer"
+      className={styles.contactLink}
+    >
+      🐱 GitHub
+    </a>{" "}
+    |{" "}
+    <a
+      href="https://www.linkedin.com/in/yourprofile"
+      target="_blank"
+      rel="noopener noreferrer"
+      className={styles.contactLink}
+    >
+      🔗 LinkedIn
+    </a>
+  </div>
+</footer>
+
     </>
   );
 }

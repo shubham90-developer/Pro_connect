@@ -8,21 +8,32 @@ export const activeCheck = (req, res) => {
 
 export const createPost = async (req, res) => {
   try {
-    const { token } = req.body;
-    const user = await User.findOne({ token: token });
+    const { token, body } = req.body;
+
+    // 1. Find user
+    const user = await User.findOne({ token });
     if (!user) {
-      res.json(404).json({ message: "User not found" });
+      return res.status(404).json({ message: "User not found" });
     }
+
+    // 2. Create new post
     const post = new Post({
       userId: user._id,
-      body: req.body.body,
-      media: req.file != undefined ? req.file.filename : "",
-      filetype: req.file != undefined ? req.file.mimetype.split("/")[1] : "",
+      body,
+      media: req.file ? req.file.path : "", // ✅ Cloudinary URL
+      filetype: req.file ? req.file.mimetype.split("/")[1] : "",
     });
+
+    // 3. Save
     await post.save();
-    res.json({ message: "Post created" });
+
+    // 4. Respond with saved post
+    return res.status(201).json({
+      message: "Post created",
+      post,
+    });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    return res.status(500).json({ message: err.message });
   }
 };
 

@@ -15,25 +15,24 @@ export const getAllPosts = createAsyncThunk(
 
 export const createPost = createAsyncThunk(
   "posts/create_post",
-  async (userData, thunkAPI) => {
-    const { file, body } = userData;
+  async ({ file, body }, thunkAPI) => {
     try {
       const formData = new FormData();
       formData.append("token", localStorage.getItem("token"));
       formData.append("body", body);
-      formData.append("media", file);
-      const response = await clientServer.post("/post", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      if (response.status === 200) {
-        return thunkAPI.fulfillWithValue("Post created");
+      formData.append("media", file); // must be a File object
+      console.log("File received:", file);
+
+      // ✅ let axios handle headers automatically
+      const response = await clientServer.post("/post", formData);
+
+      if (response.status === 201) {
+        return thunkAPI.fulfillWithValue(response.data.post);
       } else {
         return thunkAPI.rejectWithValue("Post not created");
       }
     } catch (err) {
-      return thunkAPI.rejectWithValue(err.response.data);
+      return thunkAPI.rejectWithValue(err.response?.data || err.message);
     }
   }
 );

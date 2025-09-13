@@ -1,0 +1,15 @@
+import { v2 as cloudinary } from "cloudinary";
+import dotenv from "dotenv";
+
+// 👇 make sure environment variables are loaded here too
+dotenv.config();
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+console.log("CLOUDINARY CONFIG IN USE:", cloudinary.config());
+
+export default cloudinary;

@@ -1,123 +1,334 @@
-/* Container that holds both left and right panels */
+/* Premium Login Component Styles */
 .mainContainer {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: linear-gradient(135deg, #f0f4ff, #ffffff);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  padding: 1rem;
-  gap: 2rem;
-  flex-wrap: wrap;
+  min-height: 100vh;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  overflow: hidden;
 }
 
-/* LEFT: Form container */
+.mainContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%);
+  pointer-events: none;
+}
+
 .leftContainer {
-  background: white;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
-  border-radius: 16px;
-  border: 1px solid #e0e0e0;
-  max-width: 480px;
-  width: 100%;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* RIGHT: Info / toggle panel */
-.rightContainer {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
-  border-radius: 16px;
-  padding: 2rem;
-  max-width: 300px;
-  width: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  z-index: 1;
 }
 
-/* Input container (wraps form fields) */
+.rightContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  position: relative;
+  z-index: 1;
+}
+
+.rightContainer > div {
+  text-align: center;
+  color: white;
+}
+
+.paragraph {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #2d3748;
+  text-align: center;
+  letter-spacing: -0.025em;
+}
+
+.rightContainer .paragraph {
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
 .inputContainer {
   width: 100%;
-  margin-top: 2rem;
+  max-width: 400px;
+  margin: 2rem 0;
 }
 
-/* Two fields in a row for signup (username and name) */
 .row {
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
-  flex-wrap: wrap;
 }
 
 .inputField {
-  flex: 1;
-  padding: 0.8rem 1rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: border 0.2s ease-in-out;
   width: 100%;
+  padding: 1rem 1.5rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.9);
+  color: #2d3748;
+  margin-bottom: 1rem;
+  font-family: inherit;
 }
 
 .inputField:focus {
-  border-color: #667eea;
   outline: none;
-  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+  border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  transform: translateY(-1px);
 }
 
-/* Primary button */
+.inputField::placeholder {
+  color: #a0aec0;
+  font-weight: 400;
+}
+
 .button {
-  background: #667eea;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 0.8rem 1.5rem;
-  border-radius: 8px;
-  font-weight: bold;
+  padding: 1rem 2rem;
+  border-radius: 12px;
   cursor: pointer;
+  transition: all 0.3s ease;
   text-align: center;
-  transition: background 0.3s ease;
-  margin-top: 1rem;
-  max-width: 200px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  min-width: 150px;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.button:hover::before {
+  left: 100%;
 }
 
 .button:hover {
-  background: #556cd6;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
 }
 
-/* Responsive Text Style (use with class, avoid global p selector) */
-.paragraph {
-  margin: 0.5rem 0;
-  font-size: 1rem;
+.button:active {
+  transform: translateY(0);
 }
 
-/* Responsive layout: stack on mobile */
-@media screen and (max-width: 768px) {
+.rightContainer .button {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+.rightContainer .button:hover {
+  background: white;
+  color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
+}
+
+.button p {
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
   .mainContainer {
     flex-direction: column;
-    padding: 1rem;
   }
+  
+  .leftContainer {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .rightContainer {
+    min-height: 300px;
+  }
+}
 
+@media (max-width: 768px) {
   .leftContainer,
   .rightContainer {
-    max-width: 100%;
-    border-radius: 12px;
+    padding: 1.5rem;
   }
-
+  
+  .paragraph {
+    font-size: 1.75rem;
+  }
+  
+  .rightContainer .paragraph {
+    font-size: 1.25rem;
+  }
+  
+  .inputContainer {
+    max-width: 100%;
+  }
+  
   .row {
     flex-direction: column;
+    gap: 0;
   }
-
-  .inputField {
+  
+  .button {
     width: 100%;
   }
+}
 
+@media (max-width: 480px) {
+  .leftContainer,
   .rightContainer {
-    margin-left: 0;
-    margin-top: 1.5rem;
+    padding: 1rem;
+  }
+  
+  .paragraph {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .rightContainer .paragraph {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .inputField {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.95rem;
+  }
+  
+  .button {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Animation for form elements */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.leftContainer > * {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.leftContainer > *:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.leftContainer > *:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.leftContainer > *:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.rightContainer > div {
+  animation: fadeInUp 0.6s ease forwards;
+  animation-delay: 0.4s;
+}
+
+/* Loading state for buttons */
+.button.loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.button.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Enhanced focus styles for accessibility */
+.button:focus-visible {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+.inputField:focus-visible {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .leftContainer {
+    background: rgba(45, 55, 72, 0.95);
+  }
+  
+  .paragraph {
+    color: #f7fafc;
+  }
+  
+  .inputField {
+    background: rgba(45, 55, 72, 0.8);
+    border-color: #4a5568;
+    color: #f7fafc;
+  }
+  
+  .inputField:focus {
+    background: #2d3748;
+    border-color: #667eea;
+  }
+  
+  .inputField::placeholder {
+    color: #a0aec0;
   }
 }

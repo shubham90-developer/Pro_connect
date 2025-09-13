@@ -36,12 +36,22 @@ export default function Dashboard() {
     dispatch(getAllPosts());
   };
 
+  // useEffect(() => {
+  //   if (authState.isTokenThere) {
+  //     dispatch(getAllPosts());
+  //     dispatch(getUserAndProfile({ token: localStorage.getItem("token") }));
+  //   }
+  // }, [authState.isTokenThere]);
+
   useEffect(() => {
-    if (authState.isTokenThere) {
-      dispatch(getAllPosts());
-      dispatch(getUserAndProfile({ token: localStorage.getItem("token") }));
-    }
-  }, [authState.isTokenThere]);
+  const token = localStorage.getItem("token"); // or sessionStorage
+  if (token) {
+    dispatch(getAllPosts());
+    dispatch(getUserAndProfile({ token }));
+  } else {
+    router.push("/login"); // redirect if no token
+  }
+}, []);
 
   useEffect(() => {
     if (!authState.allProfileFetched) {
