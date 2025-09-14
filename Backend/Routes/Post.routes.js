@@ -45,8 +45,6 @@ router.post(
   "/post",
   upload.single("media"),
   (req, res, next) => {
-    console.log("📂 File received by multer:", req.file);
-    console.log("📝 Body received:", req.body);
     next();
   },
   createPost
