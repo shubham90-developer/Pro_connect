@@ -16,7 +16,7 @@ export default function DashboardLayout({ children }) {
     }
     dispatch(setTokenIsThere());
   }, []);
-
+  console.log("all users" ,authState.allUsers);
   return (
     <div className={styles.container}>
       {/* Left Sidebar */}

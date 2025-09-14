@@ -5,31 +5,47 @@ import bcrypt from "bcrypt";
 import crypto from "crypto";
 import PDFDocument from "pdfkit";
 import fs from "fs";
+import axios from "axios";
 
-const convertUserDataToPdf = async (userData) => {
-  const doc = new PDFDocument();
-  const outputPath = crypto.randomBytes(32).toString("hex") + ".pdf";
-  const stream = fs.createWriteStream("uploads/" + outputPath);
-  doc.pipe(stream);
+const convertUserDataToPdf = (userData) => {
+  return new Promise(async (resolve, reject) => {
+    const doc = new PDFDocument();
+    const outputPath = crypto.randomBytes(32).toString("hex") + ".pdf";
+    const stream = fs.createWriteStream("uploads/" + outputPath);
+    doc.pipe(stream);
 
-  doc.image(`uploads/${userData.userId.profilePicture}`, {
-    align: "center",
-    width: 100,
+    // Add profile picture
+    try {
+      if (userData.userId.profilePicture?.startsWith("http")) {
+        const response = await axios.get(userData.userId.profilePicture, {
+          responseType: "arraybuffer",
+        });
+        const imgBuffer = Buffer.from(response.data, "binary");
+        doc.image(imgBuffer, { align: "center", width: 100 });
+      }
+    } catch (err) {
+      console.error("Error loading profile picture:", err.message);
+    }
+
+    // Add text
+    doc.fontSize(14).text(`Name: ${userData.userId.name}`);
+    doc.fontSize(14).text(`Username: ${userData.userId.username}`);
+    doc.fontSize(14).text(`Email: ${userData.userId.email}`);
+    doc.fontSize(14).text(`Bio: ${userData.bio || ""}`);
+    doc.fontSize(14).text(`Current Position: ${userData.currentPost || ""}`);
+    doc.fontSize(14).text("Past work:");
+    (userData.pastWork || []).forEach((work) => {
+      doc.fontSize(14).text(`Company: ${work.company}`);
+      doc.fontSize(14).text(`Position: ${work.position}`);
+      doc.fontSize(14).text(`Years: ${work.years}`);
+    });
+
+    doc.end();
+
+    // Wait for stream to finish
+    stream.on("finish", () => resolve(outputPath));
+    stream.on("error", reject);
   });
-  doc.fontSize(14).text(`Name:${userData.userId.name}`);
-  doc.fontSize(14).text(`Username:${userData.userId.username}`);
-  doc.fontSize(14).text(`Email:${userData.userId.email}`);
-  doc.fontSize(14).text(`Bio:${userData.bio}`);
-  doc.fontSize(14).text(`Current Position:${userData.currentPost}`);
-
-  doc.fontSize(14).text("Past work:");
-  userData.pastWork.forEach((work) => {
-    doc.fontSize(14).text(`Company:${work.company}`);
-    doc.fontSize(14).text(`Position:${work.position}`);
-    doc.fontSize(14).text(`Years:${work.years}`);
-  });
-  doc.end();
-  return outputPath;
 };
 
 export const register = async (req, res) => {
@@ -215,8 +231,15 @@ export const downloadUserResume = async (req, res) => {
       "userId",
       "name email username profilePicture"
     );
+
     let outputPath = await convertUserDataToPdf(userProfile);
-    return res.json({ message: outputPath });
+
+    // Return full backend URL for the file
+    const fileUrl = `${req.protocol}://${req.get(
+      "host"
+    )}/uploads/${outputPath}`;
+
+    return res.json({ message: fileUrl });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

@@ -25,7 +25,8 @@ const userSchema = mongoose.Schema({
   },
   profilePicture: {
     type: String,
-    default: "default.jpg",
+    default:
+      "https://static.vecteezy.com/system/resources/previews/036/280/651/original/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg",
   },
   createdAT: {
     type: Date,

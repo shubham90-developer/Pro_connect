@@ -13,7 +13,7 @@ const ProfileHeader = ({ userProfile }) => (
   <div className={styles.profileHeader}>
     <img
       className={styles.profilePic}
-      src={`${BASE_URL}/${userProfile.userId.profilePicture}`}
+      src={userProfile.userId.profilePicture}
       alt="Profile Picture"
     />
     <div className={styles.userDetails}>
@@ -48,7 +48,7 @@ const PostItem = ({ post }) => (
   <div className={styles.post}>
     {post.media !== '' ? (
       <div className={styles.postMedia}>
-        <img src={`${BASE_URL}/${post.media}`} alt="Post media" />
+        <img src={post.media} alt="Post media" />
       </div>
     ) : (
       <div className={styles.emptyMedia}></div>
@@ -82,7 +82,7 @@ const WorkHistory = ({ pastWork, userId }) => {
   const handleDownloadResume = async () => {
     try {
       const response = await clientServer.get(`/user/download_resume?id=${userId}`);
-      window.open(`${BASE_URL}/${response.data.message}`, "_blank");
+      window.open(response.data.message, "_blank");
     } catch (error) {
       console.error("Error downloading resume:", error);
     }
