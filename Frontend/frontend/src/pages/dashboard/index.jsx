@@ -1,3 +1,4 @@
+import Loader from './loader';
 import {
   deletePost,
   getAllComments,
@@ -54,9 +55,11 @@ export default function Dashboard() {
 
   if (!authState.user) {
     return (
-      <Layout>
-        <DashboardLayout>...Loading</DashboardLayout>
-      </Layout>
+        <Layout>
+          <DashboardLayout>
+            <Loader />
+          </DashboardLayout>
+        </Layout>
     );
   }
 
